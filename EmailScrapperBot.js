@@ -18,7 +18,7 @@ const links = () => Unique(
     Array.from(document.getElementsByTagName("*"))
     .filter(element => {
         this.href = String(element.href).trim();
-        return (IsNullOrWhiteSpace(href) === false) && (href.includes('#') === false && href.includes('javascript') === false) && element.nodeName !== 'LINK';
+        return (IsNullOrWhiteSpace(this.href) === false) && (this.href.includes('#') === false && this.href.includes('javascript') === false) && element.nodeName !== 'LINK';
     })
     .filter(element => element.hostname === window.location.hostname)
     .map(element => element.href)
@@ -28,25 +28,23 @@ const getLinks = (inputDocument) => Unique(
     Array.from(inputDocument.all)
     .filter(element => {
         this.href = String(element.href).trim();
-        return (IsNullOrWhiteSpace(href) === false) && (href.includes('#') === false && href.includes('javascript') === false) && element.nodeName !== 'LINK';
+        return (IsNullOrWhiteSpace(this.href) === false) && (this.href.includes('#') === false && this.href.includes('javascript') === false) && element.nodeName !== 'LINK';
     })
     .filter(element => element.hostname === window.location.hostname)
     .map(element => element.href)
 );
 
 let allEmails = [];
-var n = 0;
-
+let n = 0;
 
 const seeEmails = () => {
-    spamEmails = Unique(allEmails.join().split(','));
+    let spamEmails = Unique(allEmails.join().split(','));
     spamEmails.splice(spamEmails.length - 1, 1);
-    console.log(spamEmails);
+    return spamEmails;
 };
 
-
 const htmlParser = (url) => {
-    var docRequest = new XMLHttpRequest();
+    let docRequest = new XMLHttpRequest();
     docRequest.open("GET", url, true);
     docRequest.responseType = 'document';
     docRequest.overrideMimeType('text/html');
