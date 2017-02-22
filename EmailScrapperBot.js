@@ -4,41 +4,41 @@ const Unique = (value => value.filter((element, index, self) => self.indexOf(ele
 
 const emails = () => Unique(
     Array.from(document.getElementsByTagName("*"))
-    .filter(element => element.textContent.includes('@') && element.children.length < 1 && (element.nodeName !== 'SCRIPT' && element.nodeName !== 'STYLE'))
-    .map(element => element.textContent)
+        .filter(element => element.textContent.includes('@') && element.children.length < 1 && (element.nodeName !== 'SCRIPT' && element.nodeName !== 'STYLE'))
+        .map(element => element.textContent)
 );
 
 const getEmails = (inputDocument) => Unique(
     Array.from(inputDocument.all)
-    .filter(element => element.textContent.includes('@') && element.children.length < 1 && (element.nodeName !== 'SCRIPT' && element.nodeName !== 'STYLE'))
-    .map(element => element.textContent)
+        .filter(element => element.textContent.includes('@') && element.children.length < 1 && (element.nodeName !== 'SCRIPT' && element.nodeName !== 'STYLE'))
+        .map(element => element.textContent)
 );
 
 const links = () => Unique(
     Array.from(document.getElementsByTagName("*"))
-    .filter(element => {
-        this.href = String(element.href).trim();
-        return (IsNullOrWhiteSpace(this.href) === false) && (this.href.includes('#') === false && this.href.includes('javascript') === false) && element.nodeName !== 'LINK';
-    })
-    .filter(element => element.hostname === window.location.hostname)
-    .map(element => element.href)
+        .filter(element => {
+            this.href = String(element.href).trim();
+            return (IsNullOrWhiteSpace(this.href) === false) && (this.href.includes('#') === false && this.href.includes('javascript') === false) && element.nodeName !== 'LINK';
+        })
+        .filter(element => element.hostname === window.location.hostname)
+        .map(element => element.href)
 );
 
 const getLinks = (inputDocument) => Unique(
     Array.from(inputDocument.all)
-    .filter(element => {
-        this.href = String(element.href).trim();
-        return (IsNullOrWhiteSpace(this.href) === false) && (this.href.includes('#') === false && this.href.includes('javascript') === false) && element.nodeName !== 'LINK';
-    })
-    .filter(element => element.hostname === window.location.hostname)
-    .map(element => element.href)
+        .filter(element => {
+            this.href = String(element.href).trim();
+            return (IsNullOrWhiteSpace(this.href) === false) && (this.href.includes('#') === false && this.href.includes('javascript') === false) && element.nodeName !== 'LINK';
+        })
+        .filter(element => element.hostname === window.location.hostname)
+        .map(element => element.href)
 );
 
 let allEmails = [];
 let n = 0;
 
 const seeEmails = () => {
-    let spamEmails = Unique(allEmails.join().split(','));
+    let spamEmails = Unique(allEmails.join().split(',').filter(element => IsNullOrWhiteSpace(element) === false));
     spamEmails.splice(spamEmails.length - 1, 1);
     return spamEmails;
 };
