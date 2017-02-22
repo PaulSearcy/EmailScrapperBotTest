@@ -39,7 +39,6 @@ let n = 0;
 
 const seeEmails = () => {
     let spamEmails = Unique(allEmails.join().split(',').filter(element => IsNullOrWhiteSpace(element) === false));
-    spamEmails.splice(spamEmails.length - 1, 1);
     return spamEmails;
 };
 
